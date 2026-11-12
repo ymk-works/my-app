@@ -1,12 +1,35 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useState } from "react";
+import heroImg from "./assets/hero.png";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "./assets/vite.svg";
+import "./App.css";
+// LikeButton.jsxで作ったコンポーネントを読み込む
+import LikeButton from "./components/atoms/LikeButton.jsx";
+// LikeButton専用のCSSを読み込む
+import "./components/atoms/LikeButton.css";
+// atomsフォルダで作成したLoginButtonコンポーネントを読み込む
+import LoginButton from "./components/atoms/LoginButton.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  // ① 変数をJSXの中で表示する
+  const name = "山田";
+  const element = <h1>こんにちは、{name}さん！</h1>;
 
+  // ② 三項演算子で表示を切り替える
+  const isLogin = true;
+  const button = <button>{isLogin ? "ログアウト" : "ログイン"}</button>;
+
+  // ③ mapメソッドでリストを作成する
+  const items = ["React", "Vue", "Next.js"];
+
+  const list = (
+    <ul>
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
   return (
     <>
       <section id="center">
@@ -17,6 +40,19 @@ function App() {
         </div>
         <div>
           <h1>Get started</h1>
+          {/* 変数に用意した3つの要素を表示する */}
+          {element}
+
+          {/* いいねボタンの動作確認エリア */}
+          <div>
+            <h2>いいねボタンのテスト</h2>
+
+            {/* LikeButton.jsxで作った部品をここに表示する */}
+            <LikeButton />
+          </div>
+          {/* LoginButton.jsxで作ったログインボタンを表示する */}
+          <LoginButton />
+          {list}
           <p>
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
           </p>
@@ -116,7 +152,7 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
