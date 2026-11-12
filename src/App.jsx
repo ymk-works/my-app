@@ -11,18 +11,29 @@ import "./components/atoms/LikeButton.css";
 import LoginButton from "./components/atoms/LoginButton.jsx";
 // atomsフォルダで作った共通ボタンを読み込む
 import Button from "./components/atoms/Button.jsx";
+// moleculesフォルダのUserCardコンポーネントを読み込む
+import UserCard from "./components/molecules/UserCard.jsx";
+
 function App() {
+  // ① ユーザー名を変数に保存する
+  const userName = "山田太郎";
 
   return (
     <>
-<>
-  {/* 青色の「送信する」ボタン */}
-  <Button color="blue" text="送信する" />
+      {/* ② 変数userNameを使って挨拶を表示する */}
+      <h1>こんにちは、{userName}さん！</h1>
 
-  {/* 赤色の「キャンセル」ボタン */}
-  <Button color="red" text="キャンセル" />
-</>
-      
+      {/* ③ ユーザーカードを表示するエリア */}
+      {/* paddingは内側の余白。上下左右に10px設定する */}
+      <div style={{ padding: "10px" }}>
+
+        {/* 1人目：名前と年齢をPropsとして渡す */}
+        <UserCard name={"佐藤花子"} age={28} />
+
+        {/* 2人目：同じ部品に別のデータを渡す */}
+        <UserCard name={"田中耕一"} age={40} />
+
+      </div>
     </>
   );
 }
